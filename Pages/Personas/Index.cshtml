@@ -1,0 +1,87 @@
+﻿@page
+@model _2026web3.Pages.Personas.IndexModel
+@{
+    ViewData["Title"] = "Personas";
+}
+
+<h1>Personas</h1>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Mensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-3">
+    <form method="get" class="d-flex gap-2">
+        <input asp-for="Buscar" class="form-control" placeholder="Buscar por nombre" />
+        <button type="submit" class="btn btn-outline-secondary">Buscar</button>
+        @if (!string.IsNullOrWhiteSpace(Model.Buscar))
+        {
+            <a asp-page="./Index" class="btn btn-outline-secondary">Limpiar</a>
+        }
+    </form>
+    <a asp-page="./Create" class="btn btn-primary">Nueva persona</a>
+</div>
+
+@if (Model.Personas.Count == 0)
+{
+    <div class="alert alert-info">No se encontraron personas.</div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha de nacimiento</th>
+                <th>País</th>
+                <th>Pasaporte</th>
+                <th>Materias</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var persona in Model.Personas)
+            {
+                <tr>
+                    <td>@persona.Name</td>
+                    <td>@persona.dob.ToString("dd/MM/yyyy")</td>
+                    <td>@persona.Pais?.Name</td>
+                    <td>
+                        @if (persona.Pasaporte is null)
+                        {
+                            <span class="text-muted">Sin pasaporte</span>
+                        }
+                        else
+                        {
+                            @persona.Pasaporte.Numero
+                        }
+                    </td>
+                    <td>
+                        @if (persona.Materias.Count == 0)
+                        {
+                            <span class="text-muted">Ninguna</span>
+                        }
+                        else
+                        {
+                            @foreach (var materia in persona.Materias.OrderBy(m => m.Name))
+                            {
+                                <span class="badge text-bg-secondary">@materia.Name</span>
+                            }
+                        }
+                    </td>
+                    <td class="text-nowrap">
+                        <a asp-page="./Details" asp-route-id="@persona.Id" class="btn btn-sm btn-outline-secondary">Detalles</a>
+                        <a asp-page="./Edit" asp-route-id="@persona.Id" class="btn btn-sm btn-outline-primary">Editar</a>
+                        <a asp-page="./Delete" asp-route-id="@persona.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p class="text-muted">Total: @Model.Personas.Count persona(s)</p>
+}

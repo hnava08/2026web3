@@ -1,0 +1,64 @@
+﻿@page
+@model _2026web3.Pages.Personas.CreateModel
+@{
+    ViewData["Title"] = "Nueva persona";
+}
+
+<h1>Nueva persona</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Persona.Name" class="form-label"></label>
+                <input asp-for="Persona.Name" class="form-control" />
+                <span asp-validation-for="Persona.Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Persona.dob" class="form-label"></label>
+                <input asp-for="Persona.dob" type="date" class="form-control" />
+                <span asp-validation-for="Persona.dob" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Persona.paisId" class="form-label"></label>
+                <select asp-for="Persona.paisId" asp-items="Model.Paises" class="form-select">
+                    <option value="">-- Seleccione un país --</option>
+                </select>
+                <span asp-validation-for="Persona.paisId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NumeroPasaporte" class="form-label"></label>
+                <input asp-for="NumeroPasaporte" class="form-control" />
+                <div class="form-text">Opcional. Cada persona puede tener un solo pasaporte.</div>
+                <span asp-validation-for="NumeroPasaporte" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Materias</label>
+                @foreach (var materia in Model.TodasLasMaterias)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="MateriasSeleccionadas"
+                               value="@materia.Id" id="materia-@materia.Id"
+                               checked="@Model.MateriasSeleccionadas.Contains(materia.Id)" />
+                        <label class="form-check-label" for="materia-@materia.Id">
+                            @materia.Name (@materia.Creditos créditos)
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

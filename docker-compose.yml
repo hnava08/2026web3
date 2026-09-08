@@ -1,0 +1,18 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    # SQL Server no tiene imagen nativa para Apple Silicon; se emula con Rosetta.
+    platform: linux/amd64
+    container_name: 2026web3-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?define MSSQL_SA_PASSWORD en el archivo .env}"
+      MSSQL_PID: Developer
+    # 1433 lo ocupa el contenedor sql_clase, por eso este proyecto usa 1434.
+    ports:
+      - "1434:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+volumes:
+  sqlserver-data:

@@ -1,0 +1,14 @@
+# Contiene la contraseña de SQL Server para desarrollo local
+.env
+
+# Artefactos de compilación
+[Bb]in/
+[Oo]bj/
+
+# Archivos de IDE
+.vs/
+.idea/
+*.csproj.user
+
+# macOS
+.DS_Store

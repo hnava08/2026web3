@@ -1,0 +1,50 @@
+@page "{id:int}"
+@model _2026web3.Pages.Personas.DetailsModel
+@{
+    ViewData["Title"] = "Detalles de persona";
+}
+
+<h1>Detalles</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Persona.Name</dd>
+
+    <dt class="col-sm-3">Fecha de nacimiento</dt>
+    <dd class="col-sm-9">@Model.Persona.dob.ToString("dd/MM/yyyy")</dd>
+
+    <dt class="col-sm-3">País</dt>
+    <dd class="col-sm-9">@Model.Persona.Pais?.Name</dd>
+
+    <dt class="col-sm-3">Pasaporte</dt>
+    <dd class="col-sm-9">
+        @if (Model.Persona.Pasaporte is null)
+        {
+            <span class="text-muted">Sin pasaporte</span>
+        }
+        else
+        {
+            @Model.Persona.Pasaporte.Numero
+        }
+    </dd>
+
+    <dt class="col-sm-3">Materias</dt>
+    <dd class="col-sm-9">
+        @if (Model.Persona.Materias.Count == 0)
+        {
+            <span class="text-muted">Ninguna</span>
+        }
+        else
+        {
+            <ul class="mb-0">
+                @foreach (var materia in Model.Persona.Materias.OrderBy(m => m.Name))
+                {
+                    <li>@materia.Name (@materia.Creditos créditos)</li>
+                }
+            </ul>
+        }
+    </dd>
+</dl>
+
+<a asp-page="./Edit" asp-route-id="@Model.Persona.Id" class="btn btn-primary">Editar</a>
+<a asp-page="./Index" class="btn btn-secondary">Volver al listado</a>
