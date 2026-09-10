@@ -1,0 +1,23 @@
+@page
+@model Restaurante.Pages.Categorias.CreateModel
+@{
+    ViewData["Title"] = "Registrar categoria";
+}
+
+<h1>Registrar categoria</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="Categoria.Nombre"></label>
+        <input asp-for="Categoria.Nombre" />
+        <span asp-validation-for="Categoria.Nombre"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="Categoria.Descripcion"></label>
+        <input asp-for="Categoria.Descripcion" />
+    </div>
+    <br />
+    <button type="submit">Guardar</button>
+    <a asp-page="Index">Cancelar</a>
+</form>
