@@ -1,0 +1,42 @@
+@page
+@model Restaurante.Pages.Platos.CreateModel
+@{
+    ViewData["Title"] = "Registrar plato";
+}
+
+<h1>Registrar plato</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="Plato.Nombre"></label>
+        <input asp-for="Plato.Nombre" />
+        <span asp-validation-for="Plato.Nombre"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="Plato.Descripcion"></label>
+        <input asp-for="Plato.Descripcion" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Plato.Precio"></label>
+        <input asp-for="Plato.Precio" />
+        <span asp-validation-for="Plato.Precio"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="Plato.Disponible"></label>
+        <input asp-for="Plato.Disponible" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Plato.CategoriaId"></label>
+        <select asp-for="Plato.CategoriaId" asp-items="Model.ListaCategorias">
+            <option value="">Seleccione</option>
+        </select>
+        <span asp-validation-for="Plato.CategoriaId"></span>
+    </div>
+    <br />
+    <button type="submit">Guardar</button>
+    <a asp-page="Index">Cancelar</a>
+</form>
