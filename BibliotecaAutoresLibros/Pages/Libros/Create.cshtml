@@ -1,0 +1,57 @@
+@page
+@model BibliotecaAutoresLibros.Pages.Libros.CreateModel
+@{
+    ViewData["Title"] = "Registrar libro";
+}
+
+<h1>Registrar libro</h1>
+
+@if (!Model.Autores.Any())
+{
+    <div class="alert alert-warning">
+        Debe registrar al menos un autor antes de crear un libro.
+        <a asp-page="/Autores/Create">Registrar autor</a>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Libro.Titulo" class="form-label"></label>
+                    <input asp-for="Libro.Titulo" class="form-control" />
+                    <span asp-validation-for="Libro.Titulo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Libro.AnioPublicacion" class="form-label"></label>
+                    <input asp-for="Libro.AnioPublicacion" class="form-control" type="number" />
+                    <span asp-validation-for="Libro.AnioPublicacion" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="Libro.Disponibilidad" class="form-check-input" />
+                    <label asp-for="Libro.Disponibilidad" class="form-check-label"></label>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Libro.AutorId" class="form-label"></label>
+                    <select asp-for="Libro.AutorId" asp-items="Model.Autores" class="form-select">
+                        <option value="">-- Seleccione un autor --</option>
+                    </select>
+                    <span asp-validation-for="Libro.AutorId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

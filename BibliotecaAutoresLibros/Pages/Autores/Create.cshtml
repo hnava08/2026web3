@@ -1,0 +1,34 @@
+@page
+@model BibliotecaAutoresLibros.Pages.Autores.CreateModel
+@{
+    ViewData["Title"] = "Registrar autor";
+}
+
+<h1>Registrar autor</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Autor.NombreCompleto" class="form-label"></label>
+                <input asp-for="Autor.NombreCompleto" class="form-control" />
+                <span asp-validation-for="Autor.NombreCompleto" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Autor.Nacionalidad" class="form-label"></label>
+                <input asp-for="Autor.Nacionalidad" class="form-control" />
+                <span asp-validation-for="Autor.Nacionalidad" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

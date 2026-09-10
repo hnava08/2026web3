@@ -1,0 +1,48 @@
+@page "{id:int}"
+@model BibliotecaAutoresLibros.Pages.Libros.EditModel
+@{
+    ViewData["Title"] = "Editar libro";
+}
+
+<h1>Editar libro</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Libro.Id" />
+
+            <div class="mb-3">
+                <label asp-for="Libro.Titulo" class="form-label"></label>
+                <input asp-for="Libro.Titulo" class="form-control" />
+                <span asp-validation-for="Libro.Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Libro.AnioPublicacion" class="form-label"></label>
+                <input asp-for="Libro.AnioPublicacion" class="form-control" type="number" />
+                <span asp-validation-for="Libro.AnioPublicacion" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="Libro.Disponibilidad" class="form-check-input" />
+                <label asp-for="Libro.Disponibilidad" class="form-check-label"></label>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Libro.AutorId" class="form-label"></label>
+                <select asp-for="Libro.AutorId" asp-items="Model.Autores" class="form-select">
+                    <option value="">-- Seleccione un autor --</option>
+                </select>
+                <span asp-validation-for="Libro.AutorId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

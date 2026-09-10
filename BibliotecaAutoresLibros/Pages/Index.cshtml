@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center my-5">
+    <h1 class="display-5">Biblioteca — Autores y Libros</h1>
+    <p class="lead">
+        Sistema de gestión con relación uno a muchos (un autor, muchos libros).
+    </p>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a class="btn btn-primary btn-lg" asp-page="/Autores/Index">Autores</a>
+        <a class="btn btn-success btn-lg" asp-page="/Libros/Index">Libros</a>
+    </div>
+</div>
