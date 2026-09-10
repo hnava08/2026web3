@@ -5,6 +5,11 @@
 [Bb]in/
 [Oo]bj/
 
+# Bases de datos SQLite locales
+*.db
+*.db-shm
+*.db-wal
+
 # Archivos de IDE
 .vs/
 .idea/

@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center my-5">
+    <h1 class="display-5">Restaurante — Categorías y Platos</h1>
+    <p class="lead">
+        Sistema de menú con relación uno a muchos (una categoría, muchos platos).
+    </p>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a class="btn btn-primary btn-lg" asp-page="/Categorias/Index">Categorías</a>
+        <a class="btn btn-success btn-lg" asp-page="/Platos/Index">Platos</a>
+    </div>
+</div>
