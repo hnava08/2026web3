@@ -6,28 +6,24 @@
 
 <h1>Registrar categoría</h1>
 
-<div class="row">
-    <div class="col-md-6">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="mb-3">
-                <label asp-for="Categoria.Nombre" class="form-label"></label>
-                <input asp-for="Categoria.Nombre" class="form-control" />
-                <span asp-validation-for="Categoria.Nombre" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Categoria.Descripcion" class="form-label"></label>
-                <textarea asp-for="Categoria.Descripcion" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Categoria.Descripcion" class="text-danger"></span>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
-        </form>
+    <div>
+        <label asp-for="Categoria.Nombre"></label><br />
+        <input asp-for="Categoria.Nombre" />
+        <span asp-validation-for="Categoria.Nombre" class="text-danger"></span>
     </div>
-</div>
+    <br />
+    <div>
+        <label asp-for="Categoria.Descripcion"></label><br />
+        <input asp-for="Categoria.Descripcion" />
+        <span asp-validation-for="Categoria.Descripcion" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit">Guardar</button>
+    <a asp-page="Index">Cancelar</a>
+</form>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
